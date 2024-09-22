@@ -1,8 +1,5 @@
-# Here is the corrected code as per the user's request.
-
 #!/usr/bin/python3
 # This Python file uses the following encoding: utf-8
-import os
 import getpass
 import base64
 import multiprocessing
@@ -21,100 +18,64 @@ from distutils.dir_util import copy_tree
 from multiprocessing import Process
 from subprocess import check_output, CalledProcessError
 from sys import stdout, argv, exit
+#change is done
+import getpass
+import base64
 
-# Define colors (corrected variable names)
-white, red, green, cyan, yellow , yellow3 , YELLOW2, GREEN2 = '\033[1;91m', '\033[46m', '\033[1;36m', '\033[1;32m', '\033[3;0m' , '\033[1;33m' , '\033[1;93m', '\033[1;92m'
+
+RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW, YELLOW2, GREEN2 = '\033[1;91m', '\033[46m', '\033[1;36m', '\033[1;32m', '\033[3;0m' , '\033[1;33m' , '\033[1;93m', '\033[1;92m'
 
 def verCheck():
-    # Clear command adjusted for different OS
-    if os.name == 'nt':
-        system('cls')
-    else:
-        system('clear')
-        
-    print("\n{0}[{2}#{0}] {2}Checking For Updates{2}...".format(white, red, green))
-    
-    # Download the latest version file
+    system('clear')
+    print("\n{0}[{2}#{0}] {2}Checking For Updates{2}...".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW ))
     system('wget -q -O test.txt https://raw.githubusercontent.com/404-ghost/Devil-s-Call/master/version.txt')
-    
-    # Clear the terminal again
-    if os.name == 'nt':
-        system('cls')
-    else:
-        system('clear')
-    
-    # Read local version file
-    try:
-        with open('version.txt', 'r') as file:
-            a = file.read()
-        x = a.split("\n")
-    except FileNotFoundError:
-        print(f"{red}[Error]{white} version.txt not found.")
-        return
-    
-    # Read downloaded version file
-    try:
-        with open('test.txt', 'r') as file2:
-            b = file2.read()
-        z = b.split("\n")
-    except FileNotFoundError:
-        print(f"{red}[Error]{white} test.txt not found.")
-        return
-
-    # Compare versions
+    system('clear')
+    file = open('version.txt','r')
+    a = file.read()
+    x = a.split("\n")
+    file2 = open('test.txt','r')
+    b = file2.read()
+    z = b.split("\n")
+    file.close()
+    file2.close()
     if x[0] == z[0]:
-        print("{0}[{2}#{0}] {2}[Up-To-Date]- {0}v {6}{4}".format(red, white, cyan, green, yellow, yellow3, z[0]))
-        system('git checkout HEAD^ data --quiet && git checkout HEAD^ aryancall.py --quiet && git checkout HEAD^ banner.py --quiet && git checkout HEAD^ LICENSE --quiet && git checkout HEAD^ version.txt --quiet')
+        print("{0}[{2}#{0}] {2}[Up-To-Date]- {0}v {6}{4}".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW, z[0]))
+        system('git checkout HEAD^ data --quiet && git checkout HEAD^ ALIENS-call.py --quiet && git checkout HEAD^ banner.py --quiet && git checkout HEAD^ LICENSE --quiet && git checkout HEAD^ version.txt --quiet')
         system('git stash --quiet')
         system('git pull --quiet')
         system('rm -rf test.txt')
         sleep(2)
     else:
-        print("\n{0}[{2}#{0}] {2}There is a newer version available.".format(red, white, cyan, green, yellow))
-        print("{0}[{2}#{0}] {0}[{2}Current{0}]{2}- {0}v {6}\n{0}[{2}#{0}] {0}[{2}Available{0}]{2}- {0}v.{7}".format(red, white, cyan, green, yellow, x[0], z[0])) 
-        print("{0}[{2}#{0}] {2}Updating to the latest version {0}[{2}v {6}{0}] \n{0}[{2}#{0}] {2}Please wait....{7}\n".format(red, white, cyan, green, yellow, z[0], GREEN2))
+        print("\n{0}[{2}#{0}] {2}Their Is A Newer Version Available, Wanna update -.".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW))
+        print("{0}[{2}#{0}] {0}[{2}Current{0}]{2}- {0}v {6}\n{0}[{2}#{0}] {0}[{2}Available{0}]{2}- {0}v.{7}".format(RED, WHITE, CYAN, GREEN, DEFAULT, YELLOW, x[0], z[0])) 
+        print("{0}[{2}#{0}] {2}Updating To The Latest Version {0}[{2}v {6}{0}] \n{0}[{2}#{0}] {2}Please Wait....{7}\n".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW, z[0] ,GREEN2))
         system('git checkout HEAD^ data --quiet && git checkout HEAD^ ALIENS-call.py --quiet && git checkout HEAD^ banner.py --quiet && git checkout HEAD^ LICENSE --quiet && git checkout HEAD^ version.txt --quiet')
         system('git stash --quiet')
         system('git pull')
         sleep(1)
         system('rm -rf test.txt')
-        
-        # Read the updated version again
-        with open('version.txt', 'r') as file:
-            a = file.read()
-        x = a.split("\n")
-        
-        print("{0}[{2}*{0}] {2}Version Status After Update{2}.\n".format(red, white, cyan, green, yellow))
-        print("{0}[{2}*{0}] {0}[{2}Current{0}]{2}- {0}v {6}\n{0}[{2}*{0}] {0}[{2}Available{0}]{2}- {0}v.{7}{4}".format(red, white, cyan, green, yellow, x[0], z[0]))
+        file = open('version.txt','r')
+        a = file.read()
+        x = a.split("\n")      
+        print("{0}[{2}*{0}] {2}Version Status After Update.{2}.\n".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW))
+        print("{0}[{2}*{0}] {0}[{2}Current{0}]{2}- {0}v {6}\n{0}[{2}*{0}] {0}[{2}Available{0}]{2}- {0}v.{7}{4}".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW, x[0], z[0]))
         sleep(1)
-        
-        if os.name == 'nt':
-            system('cls')
-        else:
-            system('clear')
-            
-        print("\n\n\n\t\t{2}[{0}#{2}] {0}Restart program \n {2}Enter this command to run {0}-> {3}python3 devilscall.py".format(red, white, cyan, green, yellow))
+        system('clear')
+        print("\n\n\n\t\t{2}[{0}#{2}] {0}Restart program \n {2}Enter this command to run {0}-> {3}python3 devilscall.py".format(RED, WHITE, CYAN, GREEN, DEFAULT , YELLOW))
         exit()
 
 def loadingHack():
-    # Clear command for different OS
-    if os.name == 'nt':
-        system('cls')
-    else:
-        system('clear')
-        
-    print("\n\n{3}".format(red, white, cyan, green, yellow))
-    chaine = "/////////////////////" + "[*]" + " Starting ArYaN's-Call......" + "/////////////////////"
-    
-# Save file after applying corrections
-
+    system("clear")
+    print("\n\n{3}".format(RED, WHITE, CYAN, GREEN, DEFAULT ,YELLOW))
+    chaine ="/////////////////////"+"[*]"+"  .....ARYAN'S TOOLS ......"+"/////////////////////".format(RED, WHITE, CYAN, GREEN, DEFAULT ,YELLOW)
+    charspec = "$*X^%\#~?;"
     i=0
     while i<1:
         chainehack = ""
         i +=1
         for c in chaine:
             chainehack += c
-           
+            r = random.choice(charspec)+random.choice(charspec)+random.choice(charspec)
             if len(chainehack+r) <= len(chaine):
                 pass
             else:
