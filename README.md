@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" bgcolor (green)>
   
 	Please use this tool for edutional propoose onlyy 
 </p>
@@ -21,7 +21,7 @@ pkg install boxes
 ## after the packages installation you need to copy and paste this in terminal :
 
 ```
-git clone https://github.com/404-ghost/Devil-s-Call
+git clone https://github.com/RN-CyberSaFe/aryan-ALIen-Call
 cd Devil-s-Call
 python3 anonymouskiller.py
 ```
@@ -37,7 +37,7 @@ apt-get install boxes
 ```
 ##  after the Advanced Package Tool installation and updating the system you need to copy and paste this in terminal :
 ```
-git clone https://github.com/404-ghost/Devil-s-Call
-cd Devil-s-Call
-python3 anonymouskiller.py
+git clone https://github.com/RN-CyberSaFe/aryan-ALIen-Call
+cd aryan-ALIen-Call
+python3 ALIENS-call.py
 ```
