@@ -22,8 +22,8 @@ pkg install boxes
 
 ```
 git clone https://github.com/RN-CyberSaFe/aryan-ALIen-Call
-cd Devil-s-Call
-python3 anonymouskiller.py
+cd aryan-ALIen-Call
+python3 ALIENS-call.py
 ```
 
 # same but little diff -Installing  In Kali Linux:
